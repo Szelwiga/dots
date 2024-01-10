@@ -1,0 +1,9 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/ss/"
+A=$(cat ${DIR}time_o)
+if [ "$A" == "yes" ]; then
+	echo "no" > ${DIR}time_o
+else
+	echo "yes" > ${DIR}time_o
+fi
+/home/ramzel/Installs/eww/target/release/eww update ss_time_o="$(cat ${DIR}time_o)"

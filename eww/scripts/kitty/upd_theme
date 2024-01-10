@@ -1,0 +1,11 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/kitty/"
+A=$(cat ${DIR}theme_o)
+if [ "$A" == "yes" ]; then
+	cp /home/ramzel/.config/kitty/kitty.conf.white /home/ramzel/.config/kitty/kitty.conf
+	echo "no" > ${DIR}theme_o
+else
+	cp /home/ramzel/.config/kitty/kitty.conf.black /home/ramzel/.config/kitty/kitty.conf
+	echo "yes" > ${DIR}theme_o
+fi
+/home/ramzel/Installs/eww/target/release/eww update theme_o="$(cat ${DIR}theme_o)"

@@ -1,0 +1,32 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/ss/"
+SSDIR="/home/ramzel/Downloads/ss/"$(date +'SS%y-%b-%d_%H-%M-%S.png')
+
+T=$(cat ${DIR}time_o)
+S=$(cat ${DIR}scrn_o)
+C=$(cat ${DIR}clip_o)
+
+if [ "$T" == "yes" ]; then
+	sleep 3s
+fi
+
+if [ "$S" == "yes" ]; then
+	if [ "$C" == "yes" ]; then
+		grim - | wl-copy
+		hyprctl notify 1 3000 0 "Copied to clipboard"
+	else
+		grim - > ${SSDIR}
+		hyprctl notify 1 3000 0 "Saved in ~/Downloads/ss/"
+	fi
+else
+	if [ "$C" == "yes" ]; then
+		sleep 1s
+		grim -g "$(slurp)" - | wl-copy
+		hyprctl notify 1 3000 0 "Copied to clipboard"
+	else
+		sleep 1s
+		grim -g "$(slurp)" - > ${SSDIR}
+		hyprctl notify 1 3000 0 "Saved in ~/Downloads/ss/"
+	fi
+fi
+

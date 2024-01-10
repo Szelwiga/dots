@@ -1,0 +1,5 @@
+#!/bin/bash
+cd ~/.config/kitty
+mv kitty.conf kitty.tmp
+mv kitty.conf.white kitty.conf
+mv kitty.tmp kitty.conf.white

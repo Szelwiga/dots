@@ -1,0 +1,11 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/run/"
+A=$(cat ${DIR}state)
+eww="/home/ramzel/Installs/eww/target/release/eww"
+if [ "$A" == "yes" ]; then
+	echo "no" > ${DIR}state
+	$eww open sidenav
+else
+	echo "yes" > ${DIR}state
+	$eww close sidenav
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/wifi/"
+A=$(cat ${DIR}wifi_o)
+if [ "$A" == "yes" ]; then
+	nmcli radio wifi off
+	echo "no" > ${DIR}wifi_o
+else
+	nmcli radio wifi on
+	echo "yes" > ${DIR}wifi_o
+fi
+/home/ramzel/Installs/eww/target/release/eww update wifi_o="$(cat ${DIR}wifi_o)"

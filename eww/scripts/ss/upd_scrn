@@ -1,0 +1,9 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/ss/"
+A=$(cat ${DIR}scrn_o)
+if [ "$A" == "yes" ]; then
+	echo "no" > ${DIR}scrn_o
+else
+	echo "yes" > ${DIR}scrn_o
+fi
+/home/ramzel/Installs/eww/target/release/eww update ss_scrn_o="$(cat ${DIR}scrn_o)"

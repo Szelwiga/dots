@@ -1,0 +1,23 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/bars/"
+A=$(cat ${DIR}active_v)
+ID=$(cat /dev/urandom | tr -d -c a-z0-9 | head -c 10)
+echo $ID > ${DIR}last_v
+
+if [ "$A" == "no" ]; then
+	echo "yes" > ${DIR}active_v
+	/home/ramzel/Installs/eww/target/release/eww open volume
+fi
+
+wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ $1
+VOL=$(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master) | cut -d '%' -f 1)
+/home/ramzel/Installs/eww/target/release/eww update volume_o=$VOL
+
+sleep 2
+
+IT=$(cat ${DIR}last_v)
+if [ "$IT" == "$ID" ]; then
+	/home/ramzel/Installs/eww/target/release/eww close volume
+	echo "no" > ${DIR}active_v
+fi
+

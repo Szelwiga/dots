@@ -1,0 +1,14 @@
+#g++ a.cpp -o transform_wttr
+city=$1
+curl wttr.in/$city > /dev/null 2> /dev/null && curl wttr.in/$city > /tmp/wttr 2> /dev/null
+curl wttr.in/${city}?format=3 2> /dev/null > /dev/null && curl wttr.in/${city}?format=3 2> /dev/null > /tmp/wttr3
+echo -n "{\"status\": \""
+cat /tmp/wttr | head -n 3 | tail -n 1 | sed -e 's/\x1b\[[0-9;]*m//g' | cut -c 17- | /home/ramzel/.config/eww/scripts/wt/transform_wttr | tr -d '\n'
+echo -n "\",\"temp\":\""
+cat /tmp/wttr | head -n 4 | tail -n 1 | sed -e 's/\x1b\[[0-9;]*m//g' | cut -c 17- | cut -d ' ' -f 1 | cut -d '(' -f 1  | tr -d '\n' | tr -d '+' | tr -d ' '
+echo -n "\",\"icon\":\""
+cat /tmp/wttr3 | cut -d ' ' -f 2 |tr -d '\n' | tr -d ' '
+echo -n "\",\"wind\":\""
+cat /tmp/wttr | head -n 5 | tail -n 1 | sed -e 's/\x1b\[[0-9;]*m//g' | tr -d -c "0123456789" | cut -d ' ' -f 1  | tr -d '\n'
+echo -n "\",\"city\":\"$city\"}"
+echo ""

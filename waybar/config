@@ -1,0 +1,171 @@
+// -*- mode: json -*-
+
+{
+	"layer": "top",
+	"position": "top",
+	"margin-top": 7,
+	"margin-left": 12,
+	"margin-right": 12,
+	"margin-bottom": 0,
+	"modules-left": [
+		"group/hardware",
+		"custom/space",
+		"custom/app",
+		"custom/space",
+		"custom/space",
+		"custom/space",
+		"custom/space",
+		"custom/workspaces",
+		"custom/space",
+		"network",
+		"custom/space",
+		"battery",
+		"custom/space",
+		"clock"
+	],
+
+	"group/hardware": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/space",
+			"custom/cpuicon",
+			"cpu",
+			"custom/memicon1",
+			"memory",
+			"custom/space",
+			"pulseaudio",
+			"custom/space"
+		]
+	},
+	"group/wireless": {
+		"orientation": "horizontal",
+		"modules": [
+			"bluetooth",
+			"custom/space",
+			"network"
+		]
+	},
+	"custom/workspaces": {
+		"exec": "/home/ramzel/.config/waybar/w2.sh",
+		"interval": 1,
+		"tooltip": false,
+		"tooltip-format": "Workspaces"
+	},
+	"custom/cpuicon": {
+		"format": " ",
+		"tooltip": false,
+		"tooltip-format": "CPU usage"
+	},
+	"custom/memicon": {
+		"format": "    m   ",
+		"tooltip": "Memory usage"
+	},
+	"custom/memicon1": {
+		"format": "     ",
+		"tooltip": false,
+		"tooltip-format": "Memory usage",
+		
+	},
+	"custom/space": {
+		"format": " ",
+		"tooltip": false
+	},
+	"custom/dot": {
+		//"format": ".",
+		"format": "",
+		"tooltip": false
+	},
+	"custom/app": {
+		"exec": "/home/ramzel/.config/waybar/app2.sh",
+		"interval": 1,
+		"tooltip": false,
+		"tooltip-format": "Active app",
+	},
+	
+	"clock": {
+		"format": "{: %d-%m-24  %H:%M}",
+		//"format": "{:%a}",
+		"tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+                    "mode"          : "month",
+                    "format": {
+                              "months":     "<span color='#eeeeee'><b>{}</b></span>",
+                              "days":       "<span color='#eeeeee'><b>{}</b></span>",
+                              "weeks":      "<span color='#eeeeee'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#eeeeee'><b>{}</b></span>",
+                              "today":      "<span color='#175b70'><b>{}</b></span>"
+                              }
+                    },
+    },
+
+	"pulseaudio": {
+		"format": " {icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-source": " {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pavucontrol",
+		"on-click-right": "pamixer -t"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "{}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"on-click": "emacsclient -c -e '(proced)'",
+		"format": "{usage:2}%"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"on-click": "wlogout",
+		"format": "{icon} {capacity}% ",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+	},
+	"tray": {
+		"icon-size": 20
+	},
+	"network": {
+		//󰮯󰧵
+		// "interface": "wlp2*", // (Optional) To force the use of this interface
+		"format-wifi": " {essid}",
+		"format-ethernet": "{ipaddr}/{cidr}  ",
+		"tooltip-format": "{ifname} via {gwaddr}\n                   {signalStrength}% ",
+		"format-linked": "{ifname} (No IP)  ",
+		"format-disconnected": "  ",
+		//"format-alt": "{ifname}: {ipaddr}/{cidr}",
+		"on-click": "nmcli dev wifi rescan; hyprctl notify 5 1500 'rgb(d3c6aa)' 'Wifi rescan!'"
+	},
+	"backlight": {
+		"device": "intel_backlight",
+	    "format": " {icon} {percent}%",
+		"format-icons": ["", "", ""],
+	},
+	"bluetooth": {
+        // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+        //"format": "  {status}",
+        "format": "  0",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": "  {num_connections}",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+   }
+}

@@ -1,0 +1,23 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/bars/"
+A=$(cat ${DIR}active_b)
+ID=$(cat /dev/urandom | tr -d -c a-z0-9 | head -c 10)
+echo $ID > ${DIR}last_b
+
+if [ "$A" == "no" ]; then
+	echo "yes" > ${DIR}active_b
+	/home/ramzel/Installs/eww/target/release/eww open bright
+fi
+
+brightnessctl set $1
+VOL=$(brightnessctl | grep Curr | cut -d '(' -f 2  | cut -d '%' -f 1)
+/home/ramzel/Installs/eww/target/release/eww update bright_o=$VOL
+
+sleep 2
+
+IT=$(cat ${DIR}last_b)
+if [ "$IT" == "$ID" ]; then
+	/home/ramzel/Installs/eww/target/release/eww close bright
+	echo "no" > ${DIR}active_b
+fi
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+DIR="/home/ramzel/.config/eww/scripts/wifi/"
+A=$(cat ${DIR}lock_o)
+if [ "$A" == "no" ]; then
+	echo "yes" > ${DIR}lock_o
+	hyprctl notify 1 3000 0 "Trying to connect to 12X"
+	timeout 5s nmcli dev wifi connect 12X
+	echo "no" > ${DIR}lock_o
+fi

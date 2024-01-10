@@ -1,0 +1,125 @@
+* {
+	font-size: 18px;
+	font-family: monospace;
+	font-weight: bold;
+	color: #e3d6ba;
+}
+tooltip label {
+	padding: 3px 3px 3px 3px;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 18px;
+	color: #e3d6ba;
+}
+tooltip {
+	padding: 10px 10px 10px 10px;
+	background: #2e3336;
+	border: 0px solid;
+	border-radius: 8px;
+	color: #e3d6ba;
+}
+
+window#waybar {
+	background: rgba(0, 0, 0, 0);
+	color: #fdf6e3;
+}
+
+#custom-dot {
+	font-size: 8px;
+	font-family: Typeface;
+}
+#custom-memicon1 {
+	font-size: 18px;
+}
+#custom-cpuicon {
+	font-weight: normal;
+	font-size: 18px;
+}
+#custom-workspaces {
+	font-size: 18px;
+	font-family: Typeface;
+}
+#custom-app{
+	background: #2e3336;
+	border: 0px solid;
+	border-radius: 8px;
+}
+#custom-workspaces{
+	padding: 3px 0px 3px 18px;
+	background: #1e2326;
+	background: #2e3336;
+	border: 0px solid;
+	border-radius: 8px;
+	min-width: 220px;
+}
+#clock{
+	padding: 3px 10px 3px 10px;
+	background: rgb(23, 91, 112);
+	border: 0px solid;
+	border-radius: 8px;
+	min-width: 230px;
+}
+.modules-left{
+	border: 0px solid;
+/*	background: #0f1215;*/
+	background: #141619;
+	border-radius: 13px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-left: 400px;
+}
+#hardware{
+	background: rgb(23, 91, 112);
+	padding: 0px 0px 0px 0px;
+	border: 0px solid;
+	border-radius: 8px;
+	min-width: 210px;
+}
+#network{
+	background: rgb(23, 91, 112);
+	padding: 3px 10px;
+	margin: 0px 0px 0px 0px;
+	border: 0px solid;
+	border-radius: 8px;
+	min-width: 65px;
+}
+
+#battery {
+	padding: 3px 10px 3px 10px;
+/*	background: rgb(23, 91, 112);*/
+	background: #2e3336;
+	border: 0px solid;
+	border-radius: 8px;
+	min-width: 110px;
+}
+#cpu{
+	padding: 3px 0px;
+	margin: 0px 0px 0px 0px;
+}
+#custom-cpuicon{
+	padding: 3px 0px;
+	margin: 0px 0px 0px 0px;
+}
+#memory{
+	padding: 3px 0px;
+	margin: 0px 0px 0px 0px;
+}
+#custom-memicon1{
+	padding: 3px 0px;
+	margin: 0px 0px 0px 0px;
+}
+#custom-space{
+	padding: 3px 0px;
+	margin: 0px 0px 0px 0px;
+}
+#pulseaudio{
+	padding: 3px 0px;
+	margin: 0px 0px 0px 0px;
+}
+#custom-app{
+	padding: 3px 10px;
+	margin: 0px 0px 0px 0px;
+	min-width: 180px;
+}
